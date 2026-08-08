@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Professional Cinematic CSS with responsive, perfectly-fitting typography
+# Professional Cinematic CSS with fixed metric sizing and typography
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600&display=swap');
@@ -26,7 +26,7 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Perfectly proportioned hero banner to prevent awkward text wrapping */
+    /* Perfectly proportioned hero banner */
     .hero-banner {
         position: relative;
         background: linear-gradient(to right, rgba(5,5,10,0.88), rgba(11,16,33,0.88)), 
@@ -43,37 +43,56 @@ st.markdown("""
         box-sizing: border-box;
     }
 
-    /* Fluid font scaling so text fits cleanly within any screen bounds */
     .hero-title {
         font-family: 'Orbitron', sans-serif;
         font-weight: 900;
-        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+        font-size: clamp(1.5rem, 2.5vw, 2.2rem);
         color: #ffffff;
         text-shadow: 0 0 15px #00ffcc, 0 0 30px #0077ff;
         letter-spacing: 2px;
         margin: 0;
-        white-space: nowrap;
     }
 
     .hero-subtitle {
         font-family: 'Inter', sans-serif;
         color: #38bdf8;
-        font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+        font-size: clamp(0.65rem, 1.1vw, 0.85rem);
         font-weight: 600;
         letter-spacing: 1.5px;
         margin-top: 10px;
         text-transform: uppercase;
-        white-space: nowrap;
     }
 
-    /* Glowing Sidebar HUD Cards */
+    /* Custom Non-Overflowing HUD Cards & Metrics */
     .sidebar-hud {
         background: rgba(15, 23, 42, 0.75);
         border: 1px solid rgba(0, 255, 204, 0.3);
         border-radius: 10px;
-        padding: 15px;
+        padding: 12px;
         box-shadow: inset 0 0 15px rgba(0, 255, 204, 0.05);
-        margin-bottom: 15px;
+        margin-bottom: 12px;
+    }
+
+    .metric-card {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+    }
+    .metric-label {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+    .metric-value {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.05rem;
+        color: #00ffcc;
+        font-weight: 700;
+        margin: 2px 0 0 0;
     }
 
     /* Custom Input Box Styling */
@@ -104,29 +123,41 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Cinematic Sidebar HUD Panel with Rich Visuals & Emojis
+# Cinematic Sidebar HUD Panel with Custom Non-Overflowing Metrics
 with st.sidebar:
-    st.markdown("<h2 style='font-family: Orbitron; color: #00ffcc; text-align: center; font-size: 1.3rem;'>🛡️ COMMAND HUD 🛡️</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family: Orbitron; color: #00ffcc; text-align: center; font-size: 1.2rem;'>🛡️ COMMAND HUD 🛡️</h2>", unsafe_allow_html=True)
     
     st.markdown("""
         <div class="sidebar-hud">
             <p style="margin:0; font-size: 0.75rem; color: #94a3b8;">🎯 ACTIVE TARGET</p>
-            <h3 style="margin:4px 0; color: #ffffff; font-family: Orbitron; font-size: 1rem;">CANDIDATE_001</h3>
-            <p style="margin:4px 0 0 0; color: #10b981; font-weight: 600; font-size: 0.8rem;">🟢 STATUS: SYNCHRONIZED</p>
+            <h3 style="margin:4px 0; color: #ffffff; font-family: Orbitron; font-size: 0.95rem;">CANDIDATE_001</h3>
+            <p style="margin:4px 0 0 0; color: #10b981; font-weight: 600; font-size: 0.75rem;">🟢 STATUS: SYNCHRONIZED</p>
         </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("### 📊 LIVE TELEMETRY")
-    st.metric(label="⚡ System Load", value="12.4%", delta="-1.1%")
-    st.metric(label="🔥 Core Temp", value="37.2°C", delta="+0.3°C")
-    st.metric(label="🛡️ Defense Matrix", value="ACTIVE // TIER-1")
+    st.markdown("<p style='font-size: 0.85rem; color: #38bdf8; font-weight: 600; margin-bottom: 8px;'>📊 LIVE TELEMETRY</p>", unsafe_allow_html=True)
+    
+    st.markdown("""
+        <div class="metric-card">
+            <p class="metric-label">⚡ System Load</p>
+            <p class="metric-value">12.4% <span style="font-size:0.7rem; color:#10b981;">(-1.1%)</span></p>
+        </div>
+        <div class="metric-card">
+            <p class="metric-label">🔥 Core Temp</p>
+            <p class="metric-value">37.2°C <span style="font-size:0.7rem; color:#f59e0b;">(+0.3°C)</span></p>
+        </div>
+        <div class="metric-card">
+            <p class="metric-label">🛡️ Defense Matrix</p>
+            <p class="metric-value" style="font-size: 0.9rem;">ACTIVE // TIER-1</p>
+        </div>
+    """, unsafe_allow_html=True)
     
     st.markdown("---")
     if st.button("🔄 HARD REBOOT MATRIX", use_container_width=True):
         st.session_state.messages = []
         st.rerun()
 
-# Main Cinematic Hero Banner with perfectly fitted text boundaries
+# Main Cinematic Hero Banner
 st.markdown("""
     <div class="hero-banner">
         <h1 class="hero-title">⚡ AUTONOMOUS AI CORE ⚡</h1>
@@ -170,7 +201,6 @@ else:
             st.markdown(user_input)
 
         with st.chat_message("assistant"):
-            # Real-time simulation placeholder effect
             message_placeholder = st.empty()
             message_placeholder.markdown("🔍 *[DECODING ARCHITECTURAL VULNERABILITIES & SCALING TRADE-OFFS...]*")
             time.sleep(0.5)
