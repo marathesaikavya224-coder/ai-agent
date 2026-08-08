@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Professional Cinematic CSS & Neon Styling
+# Professional Cinematic CSS with responsive, perfectly-fitting typography
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600&display=swap');
@@ -26,39 +26,44 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Cinematic Banner with Background Image */
+    /* Perfectly proportioned hero banner to prevent awkward text wrapping */
     .hero-banner {
         position: relative;
-        background: linear-gradient(to right, rgba(5,5,10,0.85), rgba(11,16,33,0.85)), 
+        background: linear-gradient(to right, rgba(5,5,10,0.88), rgba(11,16,33,0.88)), 
                     url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop');
         background-size: cover;
         background-position: center;
         border: 2px solid rgba(0, 255, 204, 0.4);
         box-shadow: 0 0 35px rgba(0, 255, 204, 0.25);
-        padding: 40px;
+        padding: 30px 20px;
         border-radius: 16px;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
+    /* Fluid font scaling so text fits cleanly within any screen bounds */
     .hero-title {
         font-family: 'Orbitron', sans-serif;
         font-weight: 900;
-        font-size: 2.8rem;
+        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
         color: #ffffff;
         text-shadow: 0 0 15px #00ffcc, 0 0 30px #0077ff;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
         margin: 0;
+        white-space: nowrap;
     }
 
     .hero-subtitle {
         font-family: 'Inter', sans-serif;
         color: #38bdf8;
-        font-size: 1.1rem;
+        font-size: clamp(0.75rem, 1.4vw, 0.95rem);
         font-weight: 600;
-        letter-spacing: 2px;
-        margin-top: 12px;
+        letter-spacing: 1.5px;
+        margin-top: 10px;
         text-transform: uppercase;
+        white-space: nowrap;
     }
 
     /* Glowing Sidebar HUD Cards */
@@ -101,13 +106,13 @@ st.markdown("""
 
 # Cinematic Sidebar HUD Panel with Rich Visuals & Emojis
 with st.sidebar:
-    st.markdown("<h2 style='font-family: Orbitron; color: #00ffcc; text-align: center;'>🛡️ COMMAND HUD 🛡️</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family: Orbitron; color: #00ffcc; text-align: center; font-size: 1.3rem;'>🛡️ COMMAND HUD 🛡️</h2>", unsafe_allow_html=True)
     
     st.markdown("""
         <div class="sidebar-hud">
-            <p style="margin:0; font-size: 0.8rem; color: #94a3b8;">🎯 ACTIVE TARGET</p>
-            <h3 style="margin:4px 0; color: #ffffff; font-family: Orbitron; font-size: 1.1rem;">CANDIDATE_001</h3>
-            <p style="margin:4px 0 0 0; color: #10b981; font-weight: 600; font-size: 0.85rem;">🟢 STATUS: SYNCHRONIZED</p>
+            <p style="margin:0; font-size: 0.75rem; color: #94a3b8;">🎯 ACTIVE TARGET</p>
+            <h3 style="margin:4px 0; color: #ffffff; font-family: Orbitron; font-size: 1rem;">CANDIDATE_001</h3>
+            <p style="margin:4px 0 0 0; color: #10b981; font-weight: 600; font-size: 0.8rem;">🟢 STATUS: SYNCHRONIZED</p>
         </div>
     """, unsafe_allow_html=True)
     
@@ -121,7 +126,7 @@ with st.sidebar:
         st.session_state.messages = []
         st.rerun()
 
-# Main Cinematic Hero Banner with Background Image & Visuals
+# Main Cinematic Hero Banner with perfectly fitted text boundaries
 st.markdown("""
     <div class="hero-banner">
         <h1 class="hero-title">⚡ AUTONOMOUS AI CORE ⚡</h1>
