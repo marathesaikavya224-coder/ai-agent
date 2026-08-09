@@ -26,7 +26,6 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Perfectly proportioned hero banner */
     .hero-banner {
         position: relative;
         background: linear-gradient(to right, rgba(5,5,10,0.88), rgba(11,16,33,0.88)), 
@@ -63,7 +62,6 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* Custom Non-Overflowing HUD Cards & Metrics */
     .sidebar-hud {
         background: rgba(15, 23, 42, 0.75);
         border: 1px solid rgba(0, 255, 204, 0.3);
@@ -95,7 +93,6 @@ st.markdown("""
         margin: 2px 0 0 0;
     }
 
-    /* Custom Input Box Styling */
     .stChatInput input {
         background-color: #0b1021 !important;
         color: #00ffcc !important;
@@ -105,7 +102,6 @@ st.markdown("""
         box-shadow: 0 0 20px rgba(0, 255, 204, 0.2) !important;
     }
 
-    /* Cinematic Action Button */
     .stButton button {
         background: linear-gradient(135deg, #00ffcc 0%, #0077ff 100%);
         color: #05050a;
@@ -123,7 +119,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Cinematic Sidebar HUD Panel with Custom Non-Overflowing Metrics
 with st.sidebar:
     st.markdown("<h2 style='font-family: Orbitron; color: #00ffcc; text-align: center; font-size: 1.2rem;'>🛡️ COMMAND HUD 🛡️</h2>", unsafe_allow_html=True)
     
@@ -157,7 +152,6 @@ with st.sidebar:
         st.session_state.messages = []
         st.rerun()
 
-# Main Cinematic Hero Banner
 st.markdown("""
     <div class="hero-banner">
         <h1 class="hero-title">⚡ AUTONOMOUS AI CORE ⚡</h1>
@@ -165,7 +159,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Initialize Groq client securely
 api_key = os.getenv("GROQ_API_KEY")
 if not api_key:
     try:
@@ -181,18 +174,15 @@ else:
         base_url="https://api.groq.com/openai/v1"
     )
 
-    # Manage chat history state
     if "messages" not in st.session_state:
         st.session_state.messages = [
             {"role": "assistant", "content": "🤖 **SYSTEM INITIALIZED.** Welcome, Candidate 001. Transmit your architectural breakdown, scaling logic, or system trade-offs for high-tier evaluation. Let's begin! ⚡"}
         ]
 
-    # Render chat history with cinematic formatting
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # High-octane chat input prompt
     user_input = st.chat_input("💬 Transmit your architectural decision / system breakdown...")
 
     if user_input:
@@ -207,7 +197,7 @@ else:
             
             try:
                 response = client.chat.completions.create(
-                    model="llama3-70b-8192",
+                    model="llama-3.3-70b-versatile",  # <--- UPDATED MODEL NAME HERE
                     messages=[
                         {"role": "system", "content": "You are an elite, high-tech cybernetic AI technical interviewer evaluating architectural trade-offs, scaling bottlenecks, and system design failures. Maintain an immersive, professional, yet sharp tone. Use clear headings, emojis, and bullet points to structure your feedback."},
                         *st.session_state.messages
